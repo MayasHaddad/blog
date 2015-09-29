@@ -1,22 +1,38 @@
-extends ../layouts/default
 
-block content
-	.container: .jumbotron
-		img(src='/images/logo.svg', width='160')
-		h1 Welcome
-		p This is your new <a href='http://keystonejs.com', target='_blank'>KeystoneJS</a> website.
-		p It includes the latest versions of
-			| <a href='http://getbootstrap.com/' target='_blank'>Bootstrap</a>
-			| and <a href='http://www.jquery.com/' target='_blank'>jQuery</a>.
-		p Visit the <a href='http://keystonejs.com/guide' target='_blank'>Getting Started</a> guide to learn how to customise it.
-		hr
+doctype html
+html
+
+	//- HTML HEADER
+	head
+		meta(charset="utf-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+
+		title= title || 'blog'
+		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
+
+		//- Customise the stylesheet for your site by editing /public/styles/site.less
+		//- All .less files will be automatically compiled and minified in production.
+		link(href="/styles/site.min.css", rel="stylesheet")
+
+		//- This file provides the default styling for the KeystoneJS Content Editor
 		if user && user.canAccessKeystone
-			p
-				a(href='/keystone').btn.btn-lg.btn-primary Open the Admin UI
-		else
-			p
-				a(href='/keystone/signin', style='margin-right: 10px').btn.btn-lg.btn-primary Sign in
-				|  to use the Admin UI.
-		hr
-		p Remember to <a href='https://github.com/keystonejs/keystone' target='_blank'>Star KeystoneJS on GitHub</a> and
-			| <a href='https://twitter.com/keystonejs' target='_blank'>follow @keystonejs</a> on twitter for updates.
+			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
+
+		//- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+		//- Safely remove this block if you are not targeting IE8
+		//-[if lt IE 9]
+			script(src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js")
+			script(src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js")
+		//-[endif]
+
+		//- Include template-specific stylesheets by extending the css block
+		block css
+
+		//- Add any other template-specific HEAD tags by extending the head block
+		block head
+
+	//- HTML BODY
+	body
+		#app
+	script(src="/js/dist/index.js")

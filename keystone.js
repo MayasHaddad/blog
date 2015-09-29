@@ -11,8 +11,8 @@ var keystone = require('keystone');
 
 keystone.init({
 
-	'name': 'blog',
-	'brand': 'blog',
+	'name': 'The IT journeyman',
+	'brand': 'Mayas Haddad\'s blog',
 	
 	'less': 'public',
 	'static': 'public',
