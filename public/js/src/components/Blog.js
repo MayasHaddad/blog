@@ -1,6 +1,7 @@
 import React from 'react';
 import Menu from './Menu';
 import MainPaper from './MainPaper';
+import '../../../styles/main.css';
 
 export default class Blog extends React.Component {
 	
