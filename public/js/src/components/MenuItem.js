@@ -10,8 +10,11 @@ export default class MenuItem extends React.Component {
 	render() {
 		return <div style={{
 			backgroundColor: this.props.color,
+			color: this.props.textColor,
 			padding: 0.5 + 'em',
-			textAlign: 'center'
+			textAlign: 'center',
+			borderRadius: 1 + 'px',
+			cursor: 'pointer'
 		}} >{this.props.label}</div>;
 	}
 }
