@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class PaperHeader extends React.Component {
+export default class PaperBody extends React.Component {
 	
 	constructor(props) {
         super(props);
