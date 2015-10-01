@@ -16,9 +16,10 @@ export default class MainPaper extends React.Component {
 				marginRight: 1 + 'em',
     			width: 85 + '%',
     			boxShadow:  0 + 'px ' + 0 + 'px ' + 5 + 'px ' + 0 + 'px',
-    			marginTop: 2 + 'em'
+    			marginTop: 2 + 'em',
+    			fontFamily: 'Roboto'
 			}} >
-				<PaperHeader contextColor={this.props.contextColor} />
+				<PaperHeader currentLabel={this.props.currentLabel} textColor={this.props.textColor} contextColor={this.props.contextColor} />
 				Hello world
 			</div>);
 	}
