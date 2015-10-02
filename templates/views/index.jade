@@ -9,7 +9,7 @@ mixin post(post)
 			if post.categories && post.categories.length
 				| in 
 				each cat, i in post.categories
-					a(href='/blog/' + cat.key)= cat.name
+					a(href='/' + cat.key)= cat.name
 					if i < post.categories.length - 1
 						| , 
 					else
