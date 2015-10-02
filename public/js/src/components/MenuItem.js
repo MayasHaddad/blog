@@ -9,7 +9,7 @@ export default class MenuItem extends React.Component {
 	}
 
 	linkTo() {
-		location.href = "/#" + this.props.pageLink;
+		location.href = this.props.pageLink;
 	}
 
 	render() {
