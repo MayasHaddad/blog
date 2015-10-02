@@ -1,38 +1,56 @@
+extends ../layouts/default
 
-doctype html
-html
+mixin post(post)
+	.post(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
+		h2: a(href='/' + post.categories[0].name + '/' + post.slug)= post.title
+		p.lead.text-muted Posted 
+			if post.publishedDate
+				| on #{post._.publishedDate.format('MMMM Do, YYYY')} 
+			if post.categories && post.categories.length
+				| in 
+				each cat, i in post.categories
+					a(href='/blog/' + cat.key)= cat.name
+					if i < post.categories.length - 1
+						| , 
+					else
+						|  
+			if post.author
+				| by #{post.author.name.first}
+		if post.image.exists
+			img(src=post._.image.fit(160,160)).img.pull-right
+		p!= post.content.brief
+		if post.content.extended
+			p.read-more: a(href='/' + post.categories[0].name + '/' + post.slug) Read more...
 
-	//- HTML HEADER
-	head
-		meta(charset="utf-8")
-		meta(name="viewport", content="width=device-width, initial-scale=1.0")
-		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+block content
 
-		title= title || 'blog'
-		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
+		if data.posts.results.length
+				each post in data.posts.results
+					+post(post)
 
-		//- Customise the stylesheet for your site by editing /public/styles/site.less
-		//- All .less files will be automatically compiled and minified in production.
-		link(href="/styles/site.min.css", rel="stylesheet")
+				if data.posts.totalPages > 1
+					#pagination(style="text-align: center;")
+						ul.pagination
+							if data.posts.previous
+								li: a(href='?page=' + data.posts.previous): span.glyphicon.glyphicon-chevron-left
+							else
+								li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+							each p, i in data.posts.pages
+								li(class=data.posts.currentPage == p ? 'active' : null)
+									a(href='?page=' + (p == '...' ? (i ? data.posts.totalPages : 1) : p ))= p
+							if data.posts.next
+								li: a(href='?page=' + data.posts.next): span.glyphicon.glyphicon-chevron-right
+							else
+								li.disabled: a(href='?page=' + data.posts.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
 
-		//- This file provides the default styling for the KeystoneJS Content Editor
-		if user && user.canAccessKeystone
-			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
+			else
+				if data.category
+					h3.text-muted There are no posts in the category #{data.category.name}.
+				else
+					h3.text-muted There are no posts yet.
 
-		//- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
-		//- Safely remove this block if you are not targeting IE8
-		//-[if lt IE 9]
-			script(src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js")
-			script(src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js")
-		//-[endif]
-
-		//- Include template-specific stylesheets by extending the css block
-		block css
-
-		//- Add any other template-specific HEAD tags by extending the head block
-		block head
-
-	//- HTML BODY
-	body
-		#app
-	script(src="/js/dist/index.js")
+		if data.categories.length
+				h2 Categories
+					a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
+					each cat in data.categories
+						a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
