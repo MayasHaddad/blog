@@ -23,7 +23,8 @@ mixin post(post)
 			p.read-more: a(href='/' + post.categories[0].name + '/' + post.slug) Read more...
 
 block content
-
+		#menu
+		script(src="/js/dist/index.js")
 		if data.posts.results.length
 				each post in data.posts.results
 					+post(post)
@@ -54,3 +55,4 @@ block content
 					a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
 					each cat in data.categories
 						a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
+		
