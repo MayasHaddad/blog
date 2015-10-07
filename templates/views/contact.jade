@@ -5,30 +5,46 @@ block intro
 		h1 Contact Us
 		
 block content
-	.container
-		if enquirySubmitted
-			h3 Thanks for getting in touch.
-		else
-			.row: .col-sm-8.col-md-6
-				form(method='post')
-					input(type='hidden', name='action', value='contact')
-					.form-group(class=validationErrors.name ? 'has-error' : null)
-						label Name
-						input(type='text', name='name.full', value=formData['name.full']).form-control
-					.form-group(class=validationErrors.email ? 'has-error' : null)
-						label Email
-						input(type='email', name='email', value=formData.email).form-control
-					.form-group
-						label Phone
-						input(type='text', name='phone', value=formData.phone, placeholder='(optional)').form-control
-					.form-group(class=validationErrors.enquiryType ? 'has-error' : null)
-						label What are you contacting us about?
-						select(name='enquiryType').form-control
-							option(value='') (select one)
-							each type in enquiryTypes
-								option(value=type.value, selected=formData.enquiryType == type.value)= type.label
-					.form-group(class=validationErrors.message ? 'has-error' : null)
-						label Message
-						textarea(name='message', placeholder='Leave us a message...' rows=4).form-control= formData.message
-					.form-actions
-						button(type='submit').btn.btn-primary Send
+	div(style="text-align: center;")
+		img(style="border-radius: 50%; width: 10em; height: auto;" src="/images/me.jpg")
+	
+	p(class="about-me"). 
+		Hey there! My name is Mayas Haddad :) I write code most of the time. And when I don't write code, I usually talk and exchange about it.
+
+	p(class="about-me"). 
+		I currently work and live in the beautiful area of Paris.
+
+	p(class="about-me"). 
+		My favourite programming language is Javascript. I started to seriously dive into it not long ago actually and I'm very happy with the active community around it.
+
+	p(class="about-me"). 
+		By this blog, I will try the best I can to provide you with a decent quality feedback about my different experiences related to the actual process of producing software.
+
+	p(class="about-me"). 
+		When I say "related", this ranges from writing code to very broad topics such as
+		philosophy or psychology of user experience.
+
+	p(class="about-me"). 
+		But, worry not, it will stay relevant and practical. You will judge by yourself, anyway. 
+
+	p(class="about-me"). 
+		Please, feel free to use this array of platforms to know more about me and what I do:
+
+	p(style="text-align: center")
+		img(src="/images/github13.png" style="margin-left: 2em;")
+		img(src="/images/linkedin11.png" style="margin-left: 2em;")
+		img(src="/images/stack18.png" style="margin-left: 2em;")
+		img(src="/images/twitter1.png" style="margin-left: 2em;")
+
+	div	Icons made by 
+		a(href="http://www.flaticon.com/authors/elegant-themes" title="Elegant Themes")	Elegant Themes
+		a(href="http://www.flaticon.com/authors/simpleicon" title="SimpleIcon")
+			SimpleIcon
+		a(href="http://www.freepik.com" title="Freepik")
+			Freepik
+		a(href="http://www.flaticon.com/authors/bogdan-rosu" title="Bogdan Rosu")
+			Bogdan Rosu from
+		a(href="http://www.flaticon.com" title="Flaticon")
+			www.flaticon.com            
+		is licensed by 
+		a(href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0") CC BY 3.0

@@ -25,3 +25,7 @@
 .post > p {
   font-size: 12px !important;
 }
+
+.about-me {
+  text-align: justify;
+}
