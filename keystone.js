@@ -16,7 +16,6 @@ keystone.init({
 	
 	'less': 'public',
 	'static': 'public',
-	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'jade',
 	
@@ -24,7 +23,7 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'port': 4000
+	'port': 80
 
 });
 
